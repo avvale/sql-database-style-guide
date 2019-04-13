@@ -16,7 +16,7 @@
     CREATE TABLE user;        -- ✓ ok
     ```
 
-* **Usar snake case para** nombrar las columnas.
+* **Usar snake case** para nombrar las columnas.
 
     ```sql
     CREATE TABLE user (
@@ -47,14 +47,14 @@
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        profile TINYINT NOT NULL          -- ✓ evitar
+        profile INT NOT NULL          -- ✓ evitar
         PRIMARY KEY (id)
     )  ENGINE=INNODB; 
   
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        profile_id TINYINT NOT NULL,      -- ✓ ok
+        profile_id INT NOT NULL,      -- ✓ ok
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
     ```
@@ -76,5 +76,47 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
         company_id INT NOT NULL,
         name VARCHAR(255) NOT NULL,
         PRIMARY KEY (id)                      -- ✓ ok
+    )  ENGINE=INNODB;
+    ```
+    
+* **Usar id** como denominación para la clave primaria.
+
+    ```sql
+    CREATE TABLE user (
+        ID INT AUTO_INCREMENT,            -- ✓ evitar
+        NAME VARCHAR(255) NOT NULL,
+        PRIMARY KEY (ID)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE user (
+        _id INT AUTO_INCREMENT,            -- ✓ evitar
+        name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (_id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE user (
+        id INT AUTO_INCREMENT,            -- ✓ ok
+        name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
+    
+* **Usar el prefijo 'is' o 'has'** en las columnas booleans.
+
+    ```sql
+    CREATE TABLE user (
+        id INT AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        active TINYINT(1) NOT NULL,       -- ✓ evitar
+        purchase TINYINT(1) NOT NULL      -- ✓ evitar
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE user (
+        id INT AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        is_active TINYINT(1) NOT NULL,       -- ✓ ok
+        has_purchase TINYINT(1) NOT NULL     -- ✓ ok
+        PRIMARY KEY (id)
     )  ENGINE=INNODB;
     ```
