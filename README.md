@@ -120,3 +120,34 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
     ```
+    
+* **Usar uppercase** para la sintaxis SQL.
+
+    ```sql
+    create table user (                   -- ✓ evitar
+        id int AUTO_INCREMENT,
+        name varchar(255) not null,
+        primary key (id)
+    )  engine=innodb;
+  
+    CREATE TABLE user (                   -- ✓ ok
+        id INT AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
+
+* **Usar los siguietnes sufijos** para nominar las constraints.
+
+    * **primary key:** _pk
+    * **foreign key:** _fk
+    * **check:** _ck
+    * **not null:** _nn
+    * **unique:** _uq
+    * **index:** _idx
+    
+* **Usar el siguiente patrón** para nominar las constraints.
+
+    ```
+    <tablename>_<columnname>_<suffix>
+    ``` 
