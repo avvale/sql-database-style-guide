@@ -22,14 +22,14 @@
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        birthDate DATE,              -- ✓ evitar
+        birthDate DATE,              -- ✗ evitar
         PRIMARY KEY (id)
     )  ENGINE=INNODB; 
   
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        birth-date DATE,              -- ✓ evitar
+        birth-date DATE,              -- ✗ evitar
         PRIMARY KEY (id)
     )  ENGINE=INNODB;  
   
@@ -47,7 +47,7 @@
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        profile INT NOT NULL          -- ✓ evitar
+        profile INT NOT NULL          -- ✗ evitar
         PRIMARY KEY (id)
     )  ENGINE=INNODB; 
   
@@ -67,7 +67,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
         section_id INT NOT NULL,
         company_id INT NOT NULL,  
         name VARCHAR(255) NOT NULL,
-        PRIMARY KEY (section_id, company_id)  -- ✓ evitar
+        PRIMARY KEY (section_id, company_id)  -- ✗ evitar
     )  ENGINE=INNODB; 
   
     CREATE TABLE user (
@@ -79,17 +79,18 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     )  ENGINE=INNODB;
     ```
     
-* **Usar id** como denominación para la clave primaria.
+* **Usar id** como denominación para la clave primaria, siendo siempre un autoincrement.<br>
+Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en bases de datos noSQL, es recomendable usar una única clave primaria para una mayor compatibilidad.
 
     ```sql
     CREATE TABLE user (
-        ID INT AUTO_INCREMENT,            -- ✓ evitar
+        ID INT AUTO_INCREMENT,            -- ✗ evitar
         NAME VARCHAR(255) NOT NULL,
         PRIMARY KEY (ID)
     )  ENGINE=INNODB;
   
     CREATE TABLE user (
-        _id INT AUTO_INCREMENT,            -- ✓ evitar
+        _id INT AUTO_INCREMENT,            -- ✗ evitar
         name VARCHAR(255) NOT NULL,
         PRIMARY KEY (_id)
     )  ENGINE=INNODB;
@@ -107,8 +108,8 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     CREATE TABLE user (
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
-        active TINYINT(1) NOT NULL,       -- ✓ evitar
-        purchase TINYINT(1) NOT NULL      -- ✓ evitar
+        active TINYINT(1) NOT NULL,       -- ✗ evitar
+        purchase TINYINT(1) NOT NULL      -- ✗ evitar
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
   
@@ -124,7 +125,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
 * **Usar uppercase** para la sintaxis SQL.
 
     ```sql
-    create table user (                   -- ✓ evitar
+    create table user (                   -- ✗ evitar
         id int AUTO_INCREMENT,
         name varchar(255) not null,
         primary key (id)
@@ -150,4 +151,77 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
 
     ```
     <tablename>_<columnname>_<suffix>
-    ``` 
+    ```
+    
+* **Usar nombres en singular** para denominar a la tabla
+
+    ```sql
+    CREATE TABLE users (                  -- ✗ evitar
+        id INT AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,       
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE users (                  -- ✓ ok
+        id INT AUTO_INCREMENT,
+        name VARCHAR(255) NOT NULL,       
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
+    
+* **Usar nombres en singular** para denominar a las tablas relacionales
+
+    ```sql
+    CREATE TABLE users_profiles (                 -- ✗ evitar
+        user_id INT NOT NULL,
+        profile_id INT NOT NULL,       
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE user_profile (                   -- ✓ ok
+        user_id INT NOT NULL,
+        profile_id INT NOT NULL,       
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
+    
+* **Usar el prefijo i18n** para denominar a las tablas de internacinalización
+
+    ```sql
+    CREATE TABLE product_lang (                 -- ✗ evitar
+        id INT AUTO_INCREMENT,
+        ix INT NOT NULL,
+        lang_id VARCHAR(2) NOT NULL,  
+        name VARCHAR(255) NOT NULL,     
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE i18n_product (                 -- ✓ ok
+        id INT AUTO_INCREMENT,
+        ix INT NOT NULL,
+        lang_id VARCHAR(2) NOT NULL,  
+        name VARCHAR(255) NOT NULL,    
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
+    
+* **Usar el prefijo param** para denominar a las tablas de parametrización
+
+    ```sql
+    CREATE TABLE mail_parameter (             -- ✗ evitar
+        id INT AUTO_INCREMENT,
+        smtp VARCHAR(255) NOT NULL,  
+        pop VARCHAR(255) NOT NULL,
+        imap VARCHAR(255) NOT NULL,     
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+  
+    CREATE TABLE param_mail (                 -- ✓ ok
+        id INT AUTO_INCREMENT,
+        ix INT NOT NULL,
+        smtp VARCHAR(255) NOT NULL,  
+        pop VARCHAR(255) NOT NULL,
+        imap VARCHAR(255) NOT NULL,     
+        PRIMARY KEY (id)
+    )  ENGINE=INNODB;
+    ```
