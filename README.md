@@ -79,7 +79,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     )  ENGINE=INNODB;
     ```
     
-* **Usar id** como denominación para la clave primaria, siendo siempre un autoincrement.<br>
+* **Usar id** como denominación para la clave primaria, siendo siempre un autoincrement o UUID.<br>
 Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en bases de datos noSQL, es recomendable usar una única clave primaria para una mayor compatibilidad.
 
     ```sql
@@ -162,7 +162,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
   
-    CREATE TABLE users (                  -- ✓ ok
+    CREATE TABLE user (                   -- ✓ ok
         id INT AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,       
         PRIMARY KEY (id)
@@ -173,12 +173,14 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
 
     ```sql
     CREATE TABLE users_profiles (                 -- ✗ evitar
+        id INT AUTO_INCREMENT,
         user_id INT NOT NULL,
         profile_id INT NOT NULL,       
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
   
     CREATE TABLE user_profile (                   -- ✓ ok
+        id INT AUTO_INCREMENT,
         user_id INT NOT NULL,
         profile_id INT NOT NULL,       
         PRIMARY KEY (id)
