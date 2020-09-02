@@ -7,13 +7,20 @@
 
 **Esta guía de estilo tiene como objetivo dar una pauta para crear bases de datos bajo un estilo unificado .**
 
+## Nomenclatura
+Se ha usado PascalCase para el nombrado de las tablas y camelCase para las columnas, se ha optado por esta opción, al ser la nomenclatura que mejor encaja con la nomblencatura de los lenguajes de programación mas comunes, equiparando las siguientes propiedades:
+
+- Clases/Modelos/Repositorios con Tablas
+- Propiedades de las Clases con lso 
+
+
 ## Reglas
 
 * **Usar nombres en inglés** para el nombre de la base de datos, esquemas y columnas.
 
     ```sql
-    CREATE TABLE usuario;     -- ✗ evitar
-    CREATE TABLE user;        -- ✓ ok
+    CREATE TABLE Usuario;     -- ✗ evitar
+    CREATE TABLE User;        -- ✓ ok
     ```
 
 * **Usar snake case** para nombrar las columnas.
