@@ -7,20 +7,13 @@
 
 **Esta guía de estilo tiene como objetivo dar una pauta para crear bases de datos bajo un estilo unificado .**
 
-## Nomenclatura
-Se ha usado PascalCase para el nombrado de las tablas y camelCase para las columnas, se ha optado por esta opción, al ser la nomenclatura que mejor encaja con la nomblencatura de los lenguajes de programación mas comunes, equiparando las siguientes propiedades:
-
-- Clases/Modelos/Repositorios con Tablas
-- Propiedades de las Clases con lso 
-
-
 ## Reglas
 
 * **Usar nombres en inglés** para el nombre de la base de datos, esquemas y columnas.
 
     ```sql
-    CREATE TABLE Usuario;     -- ✗ evitar
-    CREATE TABLE User;        -- ✓ ok
+    CREATE TABLE usuario;     -- ✗ evitar
+    CREATE TABLE user;        -- ✓ ok
     ```
 
 * **Usar snake case** para nombrar las columnas.
@@ -160,7 +153,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     <tablename>_<columnname>_<suffix>
     ```
     
-* **Usar nombres en singular** para denominar a la tabla
+* **Usar singular** para denominar a la tabla
 
     ```sql
     CREATE TABLE users (                  -- ✗ evitar
@@ -176,7 +169,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     )  ENGINE=INNODB;
     ```
     
-* **Usar nombres en singular** para denominar a las tablas relacionales
+* **Usar singular** para denominar a las tablas relacionales
 
     ```sql
     CREATE TABLE users_profiles (                 -- ✗ evitar
@@ -194,20 +187,20 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     )  ENGINE=INNODB;
     ```
     
-* **Usar el prefijo i18n** para denominar a las tablas de internacinalización
+* **Usar el sufijo i18n** para denominar a las tablas de internacinalización
 
     ```sql
     CREATE TABLE product_lang (                 -- ✗ evitar
         id INT AUTO_INCREMENT,
-        ix INT NOT NULL,
+        common_id INT NOT NULL,
         lang_id VARCHAR(2) NOT NULL,  
         name VARCHAR(255) NOT NULL,     
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
   
-    CREATE TABLE i18n_product (                 -- ✓ ok
+    CREATE TABLE product_i18n (                 -- ✓ ok
         id INT AUTO_INCREMENT,
-        ix INT NOT NULL,
+        common_id INT NOT NULL,
         lang_id VARCHAR(2) NOT NULL,  
         name VARCHAR(255) NOT NULL,    
         PRIMARY KEY (id)
@@ -227,7 +220,7 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
   
     CREATE TABLE param_mail (                 -- ✓ ok
         id INT AUTO_INCREMENT,
-        ix INT NOT NULL,
+        common_id INT NOT NULL,
         smtp VARCHAR(255) NOT NULL,  
         pop VARCHAR(255) NOT NULL,
         imap VARCHAR(255) NOT NULL,     
