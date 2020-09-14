@@ -169,17 +169,17 @@ Para tener la flexibilidad de extrapolar los datos sobre soluciones basadas en b
     )  ENGINE=INNODB;
     ```
     
-* **Usar singular** para denominar a las tablas relacionales
+* **Usar plural** para denominar a las tablas relacionales
 
     ```sql
-    CREATE TABLE users_profiles (                 -- ✗ evitar
+    CREATE TABLE user_profile (                 -- ✗ evitar
         id INT AUTO_INCREMENT,
         user_id INT NOT NULL,
         profile_id INT NOT NULL,       
         PRIMARY KEY (id)
     )  ENGINE=INNODB;
   
-    CREATE TABLE user_profile (                   -- ✓ ok
+    CREATE TABLE users_profiles (                   -- ✓ ok
         id INT AUTO_INCREMENT,
         user_id INT NOT NULL,
         profile_id INT NOT NULL,       
